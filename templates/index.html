@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EB · Central de Relatórios</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="frame">
+
+    <header class="masthead">
+      <div class="masthead__badge">EB</div>
+      <div class="masthead__text">
+        <span class="masthead__eyebrow">Comando de Instrução</span>
+        <h1>Central de Relatórios</h1>
+      </div>
+      <div class="masthead__corner"></div>
+    </header>
+
+    <nav class="tabs" role="tablist">
+      <button class="tab is-active" data-tab="treinamento" role="tab" aria-selected="true" type="button">
+        <span class="tab__code">01</span> Treinamento
+      </button>
+      <button class="tab" data-tab="promocao" role="tab" aria-selected="false" type="button">
+        <span class="tab__code">02</span> Promoção
+      </button>
+    </nav>
+
+    <div class="board">
+      <main class="panels">
+
+        <!-- ===== TREINAMENTO ===== -->
+        <section class="panel is-active" id="panel-treinamento">
+          <form class="form" id="form-treinamento">
+            <div class="field">
+              <label for="t-numero">Número do treinamento</label>
+              <input type="text" id="t-numero" value="01/50">
+            </div>
+
+            <div class="rule"></div>
+
+            <div class="grid-2">
+              <div class="field">
+                <label for="t-instrutor">Instrutor</label>
+                <input type="text" id="t-instrutor" placeholder="Sua marcação">
+              </div>
+              <div class="field">
+                <label for="t-auxiliares">Auxiliares</label>
+                <input type="text" id="t-auxiliares" placeholder="Apenas Oficiais">
+              </div>
+              <div class="field">
+                <label for="t-patente-instrutor">Patente do Instrutor</label>
+                <input type="text" id="t-patente-instrutor" placeholder="Aspirante a Oficial ou acima">
+              </div>
+              <div class="field">
+                <label for="t-patente-auxiliares">Patente dos Auxiliares</label>
+                <input type="text" id="t-patente-auxiliares" placeholder="Aspirante a Oficial ou acima">
+              </div>
+            </div>
+
+            <div class="rule"></div>
+
+            <div class="field">
+              <label for="t-marcacao">Marcação</label>
+              <input type="text" id="t-marcacao" placeholder="Patente que realizará o treinamento">
+            </div>
+
+            <div class="rule"></div>
+
+            <div class="grid-2">
+              <div class="field">
+                <label for="t-horario">Horário</label>
+                <input type="text" id="t-horario" placeholder="00:00">
+              </div>
+              <div class="field">
+                <label for="t-codigo">Código do Servidor</label>
+                <input type="text" id="t-codigo" placeholder="Gerado no jogo">
+              </div>
+            </div>
+
+            <p class="hint">As normas e observações são fixas e entram automaticamente na pré-visualização.</p>
+          </form>
+        </section>
+
+        <!-- ===== PROMOÇÃO ===== -->
+        <section class="panel" id="panel-promocao">
+          <form class="form" id="form-promocao">
+            <div class="field">
+              <label for="p-numero">Número do relatório</label>
+              <input type="text" id="p-numero" value="01">
+            </div>
+
+            <div class="rule"></div>
+
+            <div class="grid-2">
+              <div class="field">
+                <label for="p-instrutor">Instrutor</label>
+                <input type="text" id="p-instrutor" placeholder="Sua marcação">
+              </div>
+              <div class="field">
+                <label for="p-auxiliares">Auxiliares</label>
+                <input type="text" id="p-auxiliares" placeholder="Apenas Oficiais">
+              </div>
+            </div>
+
+            <div class="rule"></div>
+
+            <div class="field">
+              <label for="p-aprovados">Aprovados</label>
+              <textarea id="p-aprovados" rows="3" placeholder="Um por linha: Nick - patente atual - nova patente (Em CDP, se aplicável)"></textarea>
+            </div>
+            <div class="field">
+              <label for="p-reprovados">Reprovados</label>
+              <textarea id="p-reprovados" rows="2" placeholder="Opcional — nicks não são obrigatórios"></textarea>
+            </div>
+
+            <div class="rule"></div>
+
+            <div class="grid-2">
+              <div class="field">
+                <label for="p-data">Data e hora</label>
+                <div class="input-with-btn">
+                  <input type="text" id="p-data" placeholder="Ex: 19/07/2026 - 21:40">
+                  <button type="button" id="btn-agora">Agora</button>
+                </div>
+              </div>
+              <div class="field">
+                <label for="p-comprovacoes">Comprovações</label>
+                <input type="text" id="p-comprovacoes" placeholder="Ex: fotos em anexo abaixo">
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="p-observacoes">Observações</label>
+              <textarea id="p-observacoes" rows="2" placeholder="Obrigatório"></textarea>
+            </div>
+
+            <p class="hint">Lembre-se de anexar as fotos de comprovação junto com esta mensagem — é obrigatório.</p>
+          </form>
+        </section>
+
+      </main>
+
+      <aside class="output">
+        <div class="output__head">
+          <span class="output__label">Pré-visualização</span>
+          <button id="btn-copy" class="copy-btn" type="button">Copiar</button>
+        </div>
+        <pre id="output-text" class="output__text"></pre>
+      </aside>
+    </div>
+
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
